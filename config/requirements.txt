@@ -1,0 +1,7 @@
+keras==2.4.3
+python-mnist
+numpy
+tensorflow==2.5.0rc3
+tensorflow-gpu==2.5.0rc3
+sklearn 
+opencv-python==4.5.1.48
