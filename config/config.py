@@ -58,19 +58,27 @@ detectHSVUpper = np.array([25, 255, 255]) # (Real Hue = 50, Real Sat = 100%, Rea
 
 
 # Letter image blackboard size
+# Warning! Drawn letter must be drawn within these space constraints!
 LETTER_BLACKBOARD = np.zeros((200, 200, 3), dtype = np.uint8)
-
-
 
 # Dilation and Erosion Kernel
 # Used to eliminate colour noise and/or strengthen the object colours
 KERNEL = np.ones((5,5), np.uint8) 
 
-
-
 # Minimum area for dsicovered blackboard contours for which the algorithm will to try to predict the blackboard
 MIN_LETTER_CONTOUR_AREA = 1000
 
+
+# ----------------------------------------------------------------
+# CNN Training Data Augmentation Config
+# Only used in legacy data augmentation build
+AUG_ROTATION_RANGE = 10        # Degrees of rotation 
+AUG_WIDTH_SHIFT_RANGE = 0.05    # Shift image by width percentage
+AUG_HEIGHT_SHIFT_RANGE = 0.05   # Shift image by height percentage
+# AUG_SHEAR_RANGE = 0.2          # ???
+AUG_ZOOM_RANGE = 0.05           # 
+AUG_FILL_MODE = 'nearest'      # Value of pixel to be used to fill the gaps when the image gets rotated (Ideally should be filled with emnishbackground (black))
+AUG_HORIZONTAL_FLIP = False     # Should not recognize backwards letters (c, e, etc.)
 
 
 

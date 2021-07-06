@@ -1,2 +1,0 @@
-Takes Single Color Scale image
-See config for input specs

@@ -1,9 +1,10 @@
 # Create and test or load and test the CNN model 
 # Usage: python build_cnn_recognizer.py
 
+
 # ----------------------------------------------------------------
 
-
+import numpy
 from config import config
 from mnist import MNIST
 from sklearn.model_selection import train_test_split
@@ -12,13 +13,16 @@ import keras
 from tensorflow.keras import utils
 
 from keras.models import Sequential, load_model
-from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D, BatchNormalization
 
 from keras import backend as K
 from mnist import MNIST
 from sklearn.model_selection import train_test_split
 
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
 import os
+
 
 def preprocess_data(X, y, input_shape, test_size):
   # Loading letter image data
@@ -52,10 +56,10 @@ def create_CNN_scheme(num_classes, input_shape):
   model.add(Conv2D(32, kernel_size=(3,3), activation='relu', input_shape=input_shape))
   model.add(Conv2D(64, (3, 3), activation='relu'))
   model.add(MaxPooling2D(pool_size = (2,2)))
-  model.add(Dropout(0.25))
+  model.add(BatchNormalization())
   model.add(Flatten())
   model.add(Dense(128, activation = 'relu'))
-  model.add(Dropout(0.5))
+  model.add(BatchNormalization())
   model.add(Dense(num_classes, activation='softmax'))
 
   model.compile(loss=keras.losses.categorical_crossentropy, optimizer = keras.optimizers.Adadelta(), metrics = ['accuracy'])
@@ -67,11 +71,12 @@ def create_CNN_scheme(num_classes, input_shape):
 
 def train_model(model, x_train, y_train, batch_size, epochs, x_test, y_test):
   model.fit(x_train, 
-          y_train, 
-          batch_size = batch_size, 
+          y_train,
           epochs = epochs,
+          batch_size = batch_size,
           verbose = 1,
-          validation_data = (x_test, y_test))
+          validation_data = (x_test, y_test)         
+          )
 
 def main():
   # Load raw data

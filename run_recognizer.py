@@ -2,7 +2,6 @@
 # Uses webcam to start detecting writing "object". Traces the object to get a digit. Predicts the digit with MLP and CNN models
 # use: python run_recognizer.py
 # -----------------------------------------------------------------------
-
 from config import config
 from keras.models import load_model
 import numpy as np
@@ -24,7 +23,7 @@ def getPotenDrawObjContours(frame):
   # Create a filtered Mask to find the drawing object
   color_mask = cv2.inRange(hsv, config.detectHSVLower, config.detectHSVUpper)  # Remove non-drawing activation colours
   color_mask = cv2.erode(color_mask, config.KERNEL, iterations = 2)  # Filter faint/dim object colours
-  color_mask = cv2.morphologyEx(color_mask, cv2.MORPH_OPEN, config.KERNEL)
+  color_mask = cv2.morphologyEx(color_mask, cv2.MORPH_OPEN, config.KERNEL)  # Remove noise around the drawing object
   color_mask = cv2.dilate(color_mask, config.KERNEL, iterations = 1) # Exagerate remaining object colours
 
   # Get all potential drawing object contours 
