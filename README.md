@@ -80,7 +80,8 @@ Step 4 - Draw each letter carefully on a small portion of the screen.
 My retrained model test accuracies:
 
 - MLP Test Accuracy: 93.37% with 75 Epochs
-- CNN Test Accuracy: 98.2% with 500 Epochs
+- CNN Test Accuracy with Batch Normalization: 94.2% with 500 Epochs
+- CNN Test Accuracy with Dropout: 89.1% with 500 Epochs
 
 ## Additional Resources
 
