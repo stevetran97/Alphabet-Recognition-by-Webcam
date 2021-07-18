@@ -23,7 +23,7 @@ The webcam extracts a frame in each iteration. The frame is processed to detect 
 These models were retrained with more epochs and an extra layer of dilation was also applied to the users inputs to better "exagerate" the features of a letter. In theory, the added draw thickness should reduce the "noise" caused by jagged lines drawn by the user.
 
 Furthermore, each batch of activations were batch normalized to regularize the model. Regularization make the model more robust to slight differences in the user's handwriting and potentially even assist with classifying similarly shaped letters. This lead to a significant increase in accuracy.
-Model accuracy with dropout was about 92% whereas the model accuracy using batch normalization achieved 97+%.
+Model training accuracy with dropout was about 92% whereas the batch normalization model training accuracy using achieved 97+%. The test accuracy with dropout and batch normalization was about 89.1% and 94.2% respectively.
 
 A batch normalized model was also trained using augmented training images however, this increased training time by more than 10x for the same number of epochs. This is due to the increased number of model fit steps per epoch and the additional generating algorithm steps. Despite increasing the steps, the model accuracy did not improve greatly. The final data augmentation-based model only achieved an accuracy of ~89%
 
